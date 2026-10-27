@@ -15,8 +15,16 @@ const SignUpPage = () => {
         const{data, error} = await authClient.signUp.email({
             name: userData.name,
             email: userData.email,
-            password: userData.password
+            password: userData.password,
+            callbackURL: '/'
+        
         })
+        if(error){
+            alert("reason sign up error: " + error.message)
+        }
+        if(data){
+            alert('Sign Up Successfully.You have to go to your email to verify your account')
+        }
 
         console.log("Response Form Data", {data, error})
     };
@@ -27,8 +35,6 @@ const SignUpPage = () => {
             <h1 className="pb-5">This is sign up page</h1>
 
             {/**Form START */}
-
-           
             <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
 
                   {/**Name Field START */}
